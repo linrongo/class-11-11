@@ -1,19 +1,22 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Tests {
 	private String Name;
 	private String date;
-	private int roomNum;
+	private HashMap<String,Integer> people;
 	
 	public Tests() {
 		Name = null;
 		date = null;
-		roomNum = -1;
+		people = new HashMap<String,Integer>();
 	}
 	
-	public Tests(String name, String date, int room) {
+	public Tests(String name, String date) {
 		this.Name = name;
 		this.date = date;
-		this.roomNum = room;
+		people = new HashMap<String,Integer>();
 	}
 	
 	public String getName() {
@@ -28,12 +31,15 @@ public class Tests {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getRoomNum() {
-		return roomNum;
+	public void addStudent(String name, Integer Grade) {
+		people.put(name, Grade);
 	}
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
+	public String getGrade(String name) {
+		return name + "'s grade is: " + people.get(name);		
 	}
-	
-
+	public void printAllStudent() {
+		TreeMap<String,Integer> sort = new TreeMap<>(people); 
+	        for (Map.Entry<String,Integer> entry : sort.entrySet())  
+	            System.out.println(entry.getKey() + ":" + entry.getValue());
+	}
 }
